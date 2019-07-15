@@ -90,6 +90,7 @@ public class VipController {
         }
         String value = valueOf + String.format("%015d", hashCode);
         String userId = req.getParameter("userId");
+        System.out.println(userId);
 		//商户订单号，商户网站订单系统中唯一订单号，必填
 		//String out_trade_no = new String(req.getParameter("WIDout_trade_no").getBytes("ISO-8859-1"),"UTF-8");
 		String out_trade_no =userId+","+value;
@@ -101,6 +102,7 @@ public class VipController {
 		//String subject ="优逸云音乐会员1个月";
 		//商品描述，可空
 		String body =req.getParameter("body");
+		System.out.println(body);
 		//String body ="会员有效期内可以畅听全站歌曲";
 		alipayRequest.setBizContent("{\"out_trade_no\":\""+ out_trade_no +"\"," 
 				+ "\"total_amount\":\""+ total_amount +"\"," 

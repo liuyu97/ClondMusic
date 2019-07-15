@@ -8,10 +8,12 @@
     <title>优逸云音乐</title>
         <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="assets/css/index.css">
+    <link rel="stylesheet" href="assets/css/login.css">
     <link rel="stylesheet" href="assets/css/header.css">
     <link rel="stylesheet" href="assets/css/foot.css">
     <script src="assets/js/jquery.js"></script>
     <script src="assets/js/index.js"></script>
+    <script src="assets/js/login.js"></script>
     <script src="assets/js/validate.js"></script>
     
 </head>
@@ -93,19 +95,19 @@
 
     <div class="login-bottom">
         <form action="/music/login" method="post">
-            <table style="display: ${login}" style align="center"  >
+            <table style="display: ${login};margin-left:100px;" align="center"  >
                 <tr>
                     <td>账号：</td>
-                    <td class="hint"><input type="text" value="请输入账号" name="userNumber" class="text">
+                    <td class="hint"><input type="text" value="${username}" name="userNumber" class="text">
                     <span style="float:left;color: red">${erro}</span></td>
                 </tr>
                 <tr>
                     <td>密码：</td>
-                    <td class="hint" align="top"> <input type="password" value="" name="password">
+                    <td class="hint" align="top"> <input type="password" value="${password }" name="password">
                      <span style="float:left;color: red">${nopass}</span></td>
                 </tr>
                 <tr>
-                    <td style="font-size: 10px">记住账号密码 <input type="checkbox"></td>
+                    <td style="font-size: 10px">记住账号密码 <input type="checkbox" name="autoLogin" value="autoLogin"></td>
                     <td style="font-size: 10px;float: right;"><a href="">忘记密码？</a></td>
                 </tr>
                 <tr>

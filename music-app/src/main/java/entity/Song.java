@@ -14,7 +14,7 @@ private String songWords;
 private String description;
 private Date song_create_time;
 private int uploaderId;
-private boolean isVip;
+private boolean vip;
 private boolean status;
 
 
@@ -25,7 +25,7 @@ public Song() {
 
 
 public Song(int id, String songName, String songAuthor, int typeId, String songTime, String songUrl, String songImage,
-		String songWords, String description, Date song_create_time, int uploaderId, boolean isVip, boolean status) {
+		String songWords, String description, Date song_create_time, int uploaderId, boolean vip, boolean status) {
 	super();
 	this.id = id;
 	this.songName = songName;
@@ -38,7 +38,7 @@ public Song(int id, String songName, String songAuthor, int typeId, String songT
 	this.description = description;
 	this.song_create_time = song_create_time;
 	this.uploaderId = uploaderId;
-	this.isVip = isVip;
+	this.vip = vip;
 	this.status = status;
 }
 
@@ -114,10 +114,10 @@ public void setSong_create_time(Date song_create_time) {
 	this.song_create_time = song_create_time;
 }
 public boolean isVip() {
-	return isVip;
+	return vip;
 }
-public void setVip(boolean isVip) {
-	this.isVip = isVip;
+public void setVip(boolean vip) {
+	this.vip = vip;
 }
 public boolean isStatus() {
 	return status;
@@ -135,7 +135,7 @@ public String toString() {
 	return "Song [id=" + id + ", songName=" + songName + ", songAuthor=" + songAuthor + ", typeId=" + typeId
 			+ ", songTime=" + songTime + ", songUrl=" + songUrl + ", songImage=" + songImage + ", songWords="
 			+ songWords + ", description=" + description + ", song_create_time=" + song_create_time + ", uploaderId="
-			+ uploaderId + ", isVip=" + isVip + ", status=" + status + "]";
+			+ uploaderId + ", vip=" + vip + ", status=" + status + "]";
 }
 
 
@@ -148,7 +148,7 @@ public int hashCode() {
 	int result = 1;
 	result = prime * result + ((description == null) ? 0 : description.hashCode());
 	result = prime * result + id;
-	result = prime * result + (isVip ? 1231 : 1237);
+	result = prime * result + (vip ? 1231 : 1237);
 	result = prime * result + ((songAuthor == null) ? 0 : songAuthor.hashCode());
 	result = prime * result + ((songImage == null) ? 0 : songImage.hashCode());
 	result = prime * result + ((songName == null) ? 0 : songName.hashCode());
@@ -179,7 +179,7 @@ public boolean equals(Object obj) {
 		return false;
 	if (id != other.id)
 		return false;
-	if (isVip != other.isVip)
+	if (vip != other.vip)
 		return false;
 	if (songAuthor == null) {
 		if (other.songAuthor != null)

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import org.apache.commons.io.FileUtils;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,11 +29,13 @@ import entity.PlayRecordSong;
 import entity.Sms;
 import entity.Song;
 import entity.User;
+import net.sf.json.JSONObject;
 import service.prototype.ICollectService;
 import service.prototype.IPlayRecordService;
 import service.prototype.ISongService;
 import service.prototype.IUserService;
 import sms.JavaSmsApi;
+import util.JsonUtil;
 
 @Controller
 public class MyHomeController {
@@ -55,7 +58,7 @@ public class MyHomeController {
 	public ModelAndView myHome(HttpServletRequest req,HttpServletResponse resp) throws IOException{
 		resp.setContentType("text/html; charset=utf-8");
 		User user =(User)req.getSession().getAttribute("user");
-		if(user==null) {
+		if(user==null||user.getId()==0) {
 			PrintWriter out = resp.getWriter();
 			out.print("<script language=\"javascript\">alert('身份过期了，你需要重新登陆！');window.location.href='/music/index'</script>");
 			return null;
@@ -121,16 +124,7 @@ public class MyHomeController {
 		return data;
 	}
 	
-	@RequestMapping("/bind")
-	public ModelAndView bind(){
-		mv.setViewName("bind");
-		return mv;
-	}
-	@RequestMapping("/unbind")
-	public ModelAndView unbind(){
-		mv.setViewName("unbind");
-		return mv;
-	}
+
 	@RequestMapping("/uploadImage")
 	public ModelAndView uploadImage(){
 		mv.setViewName("uploadimage");
@@ -161,50 +155,103 @@ public class MyHomeController {
 
 	}
 
-	@RequestMapping(value="/Sms",method=RequestMethod.POST)
-	@ResponseBody
-	public ModelAndView Sms(HttpServletRequest req,HttpServletResponse resp){
-		String mobile = req.getParameter("phone");
-		System.out.println(mobile);
-		Sms sms = new Sms();
-		sms.setMobile(mobile);
-		
-		JavaSmsApi javaSmsApi = new JavaSmsApi();
-		try {
-			String sendSms = javaSmsApi.sendSms(sms);
-			req.getSession().setAttribute("sendSms", sendSms);
-			req.getSession().setAttribute("mobile", mobile);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (URISyntaxException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		
-		return mv;
-	}
-	
-	@RequestMapping(value="/SmsCode",method=RequestMethod.POST)
-	@ResponseBody
-	public ModelAndView SmsCode(HttpServletRequest req,HttpServletResponse resp){
-		String code = req.getParameter("code");
-		System.out.println(code);
-
-		String senedSms =(String) req.getSession().getAttribute("sendSms");
-		String mobile =(String) req.getSession().getAttribute("mobile");
-		User user = (User)req.getSession().getAttribute("user");
-		if(senedSms.equals(code)){
-			user.setPhone(Integer.parseInt(mobile));
-			userService.updateUser(user);
-			req.getSession().removeAttribute("sendSms");
-			req.getSession().removeAttribute("mobile");
-			mv.addObject("success",true);
-			req.setAttribute("succ", "添加成功");
-		}else{
-			
+	//绑顶手机
+		@RequestMapping("/bind")
+		public ModelAndView bind(){
+			mv.setViewName("bind");
+			return mv;
 		}
-		return mv;
-	}
+		
+		
+		//发送验证码
+		@RequestMapping(value="/Sms",method=RequestMethod.POST)
+		@ResponseBody
+		public ModelAndView Sms(HttpServletRequest req,HttpServletResponse resp){
+			String mobile = req.getParameter("phone");
+			System.out.println(mobile);
+			Sms sms = new Sms();
+			sms.setMobile(mobile);
+			
+			JavaSmsApi javaSmsApi = new JavaSmsApi();
+			try {
+				String sendSms = javaSmsApi.sendSms(sms);
+				req.getSession().setAttribute("sendSms", sendSms);
+				req.getSession().setAttribute("mobile", mobile);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (URISyntaxException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}		
+			return mv;
+		}
+		
+		//验证验证码
+		@RequestMapping(value="/SmsCode",method=RequestMethod.POST)
+		@ResponseBody
+		public void SmsCode(HttpServletRequest req,HttpServletResponse resp) throws IOException{
+			PrintWriter pw = resp.getWriter();
+			String code = req.getParameter("code");
+			System.out.println(code);
+
+			String sendSms =(String) req.getSession().getAttribute("sendSms");
+			System.out.println(sendSms);
+			String mobile =(String) req.getSession().getAttribute("mobile");
+			System.out.println(mobile);
+			User user = (User)req.getSession().getAttribute("user");
+			System.out.println(user);
+			if(sendSms.equals(code)){
+				user.setPhone(Long.parseLong(mobile));
+				userService.updateUser(user);
+				req.getSession().removeAttribute("sendSms");
+				req.getSession().removeAttribute("mobile");
+				resp.setContentType("test/javascript;charset=utf-8");
+				String success = "{\"result\":\"绑定成功\"}";
+				JSONObject json = JsonUtil.toJson(success);
+				pw.write(json.toString());
+			}else{
+				String fail = "{\"result\":\"绑定失败\"}";
+				JSONObject json = JsonUtil.toJson(fail);
+				pw.write(json.toString());
+			}
+
+		}
+		
+		//解绑手机
+			@RequestMapping("/unbind")
+			public ModelAndView unbind(){
+				mv.setViewName("unbind");
+				return mv;
+			}
+			//验证验证码
+			@RequestMapping(value="/SmsCode2",method=RequestMethod.POST)
+			@ResponseBody
+			public void SmsCode2(HttpServletRequest req,HttpServletResponse resp) throws IOException{
+				PrintWriter pw = resp.getWriter();
+				String code = req.getParameter("code");
+				System.out.println(code);
+
+				String sendSms =(String) req.getSession().getAttribute("sendSms");
+				System.out.println(sendSms);
+
+				User user = (User)req.getSession().getAttribute("user");
+				System.out.println(user);
+				if(sendSms.equals(code)){
+					user.setPhone((long)0);
+					userService.updateUser(user);
+					req.getSession().removeAttribute("sendSms");
+					resp.setContentType("test/javascript;charset=utf-8");
+					String success = "{\"result\":\"解绑成功\"}";
+					JSONObject json = JsonUtil.toJson(success);
+					pw.write(json.toString());
+				}else{
+					String fail = "{\"result\":\"解绑失败\"}";
+					JSONObject json = JsonUtil.toJson(fail);
+					pw.write(json.toString());
+				}
+
+			}
 	
 	
 	

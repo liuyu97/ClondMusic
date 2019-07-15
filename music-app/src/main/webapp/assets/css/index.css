@@ -25,7 +25,7 @@ li,ul,p,h1,h2,h3{
     cursor: pointer;
 }
 .close:hover{
-    color: red;
+    color: rgb(100,100,193);
 }
 .login{
     display: none;
@@ -86,7 +86,7 @@ td a:hover{
     height: 45px;
 }
 .error{
-    color:red;
+    color:rgb(100,100,193);
 }
 .signPage{
     display: none;
@@ -185,7 +185,7 @@ td a:hover{
     background: #fff;
 }
 .btn:nth-child(1){
-    background: red;
+    background: rgb(100,100,193);
 }
 
 .box-right{
@@ -365,6 +365,7 @@ li p:hover{
     height: 150px;
     width: 645px;
     margin: 28px 0 0 0;
+    overflow:hidden;
 }
 .roll ul:nth-child(2){
     left: 645px;
@@ -514,7 +515,7 @@ li p:hover{
 }
 
 .one{
-    color: red;
+    color: rgb(100,100,193);
 }
 .soaring-bottom li a{
     float: left;

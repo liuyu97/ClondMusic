@@ -158,6 +158,7 @@ header a{
     width:100%;
     height:475px;
     float:left;
+   background: url('../images/loading.gif') no-repeat top center;
 }
 .search-bottom{
     width:100%;
@@ -171,9 +172,11 @@ header a{
 .search-bottom-li a{
     color:#000;
     text-decoration:none;
+    line-height: 20px;
 }
 .search-bottom-li a:hover{
-    text-decoration:underline;
+    text-decoration:underlin;e;
+    
 }
 .search-bottom-li-other{
     width:100%;height:30px;
@@ -202,6 +205,7 @@ header a{
     font-size:12px;
     color:#333;
     float:left;
+    overflow:hidden;
     margin-left:15px;
 }
 .search-bottom-li-4{
@@ -268,7 +272,7 @@ header a{
     cursor:pointer;
 }
 .sbn{
-    background:red;
+    background:rgb(100,100,255);
 }
 .zuihou{
     border-top: rgb(200 200 200)solid 1px;
@@ -321,4 +325,15 @@ header a{
 }
 .zuihou13:nth-child(12){
     background-image: url("../images/bottom4.png");
+}
+.keyword{
+	width:180px;height:50px;margin:auto;float:left;text-align:center;line-height:50px;cursor: pointer;
+}
+.keyword:nth-child(1),.keyword:nth-child(2),.keyword:nth-child(3){
+	color:rgb(100,100,255);
+}
+.keywords{
+	width:100%;
+	height:100%;
+	background:white;
 }

@@ -51,6 +51,7 @@
 				sex : sex,
 			},
 			success : function(data) {
+				console.log(data);
 			        $(".data").html("保存成功")
 			    }
 		});

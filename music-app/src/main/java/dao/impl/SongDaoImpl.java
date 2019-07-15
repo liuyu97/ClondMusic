@@ -22,7 +22,7 @@ public class SongDaoImpl implements ISongDao {
 	@Override
 	public void addSong(Song song) {
 		// TODO Auto-generated method stub
-		String sql = "insert into t_song(id,song_name,song_author,type_id,song_create_time,song_url,song_image,song_words,description,is_vip,status,song_time,uploader_id )values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into t_song(id,song_name,song_author,type_id,song_create_time,song_url,song_image,song_words,description,vip,status,song_time,uploader_id )values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		Object[] obj = new Object[]{song.getId(),song.getSongName(),song.getSongAuthor(),song.getTypeId(),DateUtil.formate(new Date(), "yyyy-MM-dd HH:mm:ss"),song.getSongUrl(),song.getSongImage(),song.getSongWords(),song.getDescription(),song.isVip(),song.isStatus(),song.getSongTime(),song.getUploaderId()};
 		jt.update(sql,obj);
 	}

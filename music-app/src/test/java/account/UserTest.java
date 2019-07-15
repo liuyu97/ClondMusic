@@ -78,12 +78,12 @@ public class UserTest {
 	
 	
 	
-	/*@Test
+	@Test
 	public void testadd(){
 		User user = new User();
-		user.setAccount("123123123");
-		user.setPassword("123123123");
+		user.setAccount("888888");
+		user.setPassword("888888");
 		userService.addUser(user);
 
-	}*/
+	}
 }

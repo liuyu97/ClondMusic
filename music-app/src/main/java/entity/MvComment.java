@@ -9,6 +9,24 @@ public class MvComment {
 	private int mvId;
 	private Date comment_time;//评论时间
 	private String content;//评论内容
+	
+	public MvComment(int userId, int mvId, String content) {
+		super();
+		this.userId = userId;
+		this.mvId = mvId;
+		this.content = content;
+	}
+	public MvComment() {
+		super();
+	}
+	public MvComment(int id, int userId, int mvId, Date comment_time, String content) {
+		super();
+		this.id = id;
+		this.userId = userId;
+		this.mvId = mvId;
+		this.comment_time = comment_time;
+		this.content = content;
+	}
 	public int getId() {
 		return id;
 	}

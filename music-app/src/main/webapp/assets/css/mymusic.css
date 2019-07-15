@@ -20,9 +20,9 @@ h1,h2,h3,h4,h5,h6,ul,li{
     box-sizing: border-box;
 }
 .my-music{
-    width:87%;
+    width:982px;
     height:590px;	
-    margin-left:13%;
+    margin:auto;
     position:relative;
 }
 .my-music-list{
@@ -38,7 +38,6 @@ h1,h2,h3,h4,h5,h6,ul,li{
 .my-music-song{
     width:78.8%;
     height:593px;
-    float:left;
 }
 .my-music-list-music{
     width:737px;

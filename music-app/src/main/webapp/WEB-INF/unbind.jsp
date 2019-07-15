@@ -5,14 +5,67 @@
 <head>
     <meta charset="UTF-8">
     <title>换绑手机</title>
-        <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="assets/css/bind.css">
     <link rel="stylesheet" href="assets/css/foot.css">
     <link rel="stylesheet" href="assets/css/header.css">
     <script src="./assets/js/jquery.js"></script>
-        <script src="assets/js/index.js"></script>
-    <script src="assets/js/validate.js"></script>
-    <script>
+    
+     <script type="text/javascript">
+    
+    
+    
+   	/* 发送验证码 */
+    $(function(){
+    	$(".getSms").click(function(){
+    		
+    		var phone = $("input[name='phone']").val();
+    		
+    		$.ajax({
+            	type:"POST",
+                url:"/music/Sms",
+                data:{
+                	phone : phone
+                },
+                dataType:"json",
+                success:function(result) {
+                    alert(result);
+                }
+            });
+    		
+    		
+    		
+    	})
+    	
+    	
+    	$(".submit").click(function(){
+    		
+    		var code = $("input[name='code']").val();
+    		
+    		$.ajax({
+            	type:"POST",
+                url:"/music/SmsCode2",
+                data:{
+                	code : code
+                },
+                dataType:"json",
+                success:function(data) {
+                	var ad = eval(data);
+                	alert(ad.result)
+                }
+            });
+    		
+    		
+    		
+    	})
+    	
+    	
+    })
+    
+    </script>
+</head>
+<body>
+<!-- 导航栏 -->
+<script>
         $(function () {
             $('.uh').hover(function () {
                 $('.pull').css("display","block")
@@ -31,9 +84,7 @@
 
 
     </script>
-</head>
-<body>
-<!-- 导航栏 -->
+
 <header>
     <div class="top">
         <div class="left">
@@ -42,7 +93,7 @@
                 <div><a href="/music/index">发现音乐</a></div>
                 <div><a href="/music/myMusic?userid=${user.getId() }">我的音乐</a></div>
                 <div><a href="/music/MV">发现视频</a></div>
-                <div><a href="/music/rank">热门排行榜</a></div>
+                <div><a href="">热门排行榜</a></div>
             </div>
         </div>
         <div class="right">
@@ -83,7 +134,7 @@
     </div>
     <hr style="height:1px;border:none;border-top:1px dashed #d5d5d5;" width="95%"/>
     <div class="bind-area">
-        <p>你已绑定的手机号：18435110027&nbsp;<a href="" style="color: red">获取验证码</a>
+        <p>你已绑定的手机号：${user.getPhone()}&nbsp;<a href="" style="color: red" class="getSms">获取验证码</a>
         </p>
 
         <p>验证码：<input type="text" name="code" style="height: 20px;width: 50px">

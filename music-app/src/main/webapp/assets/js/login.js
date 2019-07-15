@@ -1,78 +1,5 @@
 $(function() {
-
-	// 轮播图
-	var num = 0;
-	var a = $(".box a");
-	var btn = $(".btn");
-	var viewPage = $(".viewPage");
-	function move() {
-		num++;
-		if (num == a.length) {
-			num = 0;
-		}
-		a.css("opacity", 0);
-		a.eq(num).animate({
-			"opacity" : .8
-		}, 1000)
-		btn.css("background", "#fff")
-		btn.eq(num).css("background", "rgb(100,100,193)")
-
-		viewPage.css("background", "url(assets/images/lunboback" + (num + 1)
-				+ ")")
-
-	}
-	var anima = setInterval(move, 5000)
-
-	a.mouseenter(function() {
-		clearInterval(anima)
-	})
-	a.mouseleave(function() {
-		anima = setInterval(move, 5000)
-	})
-
-	btn.click(function() {
-		num = btn.index(this);
-
-		a.css("opacity", 0);
-		a.eq(num).css("opacity", 1, 2000)
-
-		btn.css("background", "#fff")
-		btn.eq(num).css("background", "rgb(100,100,193)")
-		viewPage.css("background", "url(assets/images/lunboback" + (num + 1)
-				+ ")")
-
-	})
-
-	var ul = $(".roll-ul");
-	var left = $(".inner-left")
-
-	var right = $(".inner-right")
-	var ulWidth = ul.width();
-
-	var sum = 0;
-	var emp = 0;
-	var length = ul.length;
-	function move2() {
-		console.log(2);
-		sum++;// 2
-		length--;
-		if (sum == ul.length - 1) {
-			sum = 0;
-		}
-		// emp=ul.eq(sum-1).width();
-		ul.eq(length).animate({
-			left : ul.eq(sum).width() - ulWidth
-		}, 2000);
-		console.log(ul.eq(sum).width());
-		ul.eq(sum - 1).animate({
-			left : ul.eq(sum).width()
-		}, 2000);
-		ul.eq(length - 1).css("left", -(ul.eq(sum).width()));
-		console.log(sum);
-		console.log(length);
-
-	}
-	left.click(move2)
+	
 
 	// 弹出登陆框
 	var login = $(".loginButton");
@@ -80,6 +7,7 @@ $(function() {
 	var loginView = $(".login");
 	login.click(function() {
 		loginView.css("display", "block")
+		console.log(1);
 	})
 
 	var delDef;
@@ -160,4 +88,9 @@ $(function() {
 	$(".close").click(function() {
 		$(".login").css("display", "none")
 	})
+	
+	
+	
 })
+
+

@@ -5,33 +5,17 @@
 <head>
     <meta charset="UTF-8">
     <title>绑定手机</title>
-        <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="assets/css/bind.css">
     <link rel="stylesheet" href="assets/css/foot.css">
     <link rel="stylesheet" href="assets/css/header.css">
     <script src="assets/js/jquery.js"></script>
-    <script>
-        $(function () {
-            $('.uh').hover(function () {
-                $('.pull').css("display","block")
-            },function () {
-                $('.pull').css("display","none")
-                }
-            )
-
-
-            $('.pull').hover(function () {
-                $('.pull').css("display","block")
-            },function () {
-                $('.pull').css("display","none")
-            })
-        })
-
-
-    </script>
+    
     
     <script type="text/javascript">
     
+    
+    
+   	/* 发送验证码 */
     $(function(){
     	$(".getSms").click(function(){
     		
@@ -66,7 +50,8 @@
                 },
                 dataType:"json",
                 success:function(data) {
-                  
+                	var ad = eval(data);
+                	alert(ad.result)
                 }
             });
     		
@@ -80,7 +65,6 @@
     </script>
 </head>
 <body>
-
 <!-- 导航栏 -->
 <script>
         $(function () {
@@ -114,7 +98,7 @@
             </div>
         </div>
         <div class="right">
-            <div class="seek">音乐/视频/用户</div>
+            <a href="/music/search" class="seek" >音乐/视频/用户</a>
             <div class="loginButton" style="display:${none}">
                 <a href="javascript:;">用户登陆</a>           
             </div>

@@ -19,9 +19,8 @@ body{
 }
 .play-box{
     width:980px;
-    min-height:1300px;
+    height:auto;
     border:1px solid #d3d3d3;
-    border-width:0 1px;
     margin:0 auto;
     background:#fff;
 }
@@ -38,13 +37,14 @@ body{
 }
 .my-music-list-music{
     width:720px;
-    height:1300px;
+    height:auto;
     float:left;
     position:absolute;
     display:block;
     margin:0 auto;
     border-right:1px solid rgba(0,0,0,0.2);
     border-bottom:1px solid rgba(0,0,0,0.2);
+    background:#fff;
 }
 .my-video{
     width:737px;
@@ -222,7 +222,7 @@ body{
     height:100%;
 }
 .mymusic-title-username{
-    width:90px;
+    width:150px;
     height:20px;
     position:absolute;
     left:180px;
@@ -556,8 +556,6 @@ body{
     font-size:12px;
 }
 .mymusic-comment-icon-3{
-    width:33px;
-    height:18px;
     background:blue;
     float:right;
     cursor:pointer;
@@ -592,12 +590,14 @@ body{
     margin-left:20px;
     border-bottom:1px dotted #c8c8c8;
     float:left;
+    background:#fff;
 }
 .mymusic-comment-good-user{
     width:40px;
     height:42px;
     margin-top:13px;
     float:left;
+    background:#fff;
 }
 .mymusic-comment-good-user img{
     width:100%;
@@ -653,4 +653,16 @@ body{
 }
 .mymusic-comment-reply a{
     text-decoration:none;
+}
+.mymy{
+	width:750px;
+	height:auto;
+	float:left;
+	
+}
+.lineheight{
+	
+	color:blue;
+	font-size: 30px;
+	font-weight: bold;
 }

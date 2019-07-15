@@ -11,9 +11,9 @@
     <link rel="stylesheet" href="./assets/css/header.css">
     <link rel="stylesheet" href="assets/css/login.css">
     <link rel="stylesheet" href="assets/css/foot.css">
-    <script src="assets/js/jquery.js"></script>
-        <script src="assets/js/index.js"></script>
-    <script src="assets/js/validate.js"></script>
+ 	  <script src="assets/js/jquery.js"></script>
+	<script src="assets/js/login.js"></script>
+	<script src="assets/js/validate.js"></script>
     
 </head>
 <body>

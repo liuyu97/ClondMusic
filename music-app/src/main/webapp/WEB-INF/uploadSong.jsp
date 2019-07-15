@@ -168,7 +168,7 @@
 			},
 			success : function(data) {
 				alert(data);			
-				window.location.href="/music/index"
+				window.location.href="/music/myHome"
 			}
 		});
 	}

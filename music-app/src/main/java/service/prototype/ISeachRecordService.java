@@ -22,5 +22,6 @@ public interface ISeachRecordService {
 	SearchRecord findById(int id);
 	//--通过userId查找搜索记录
 	List<SearchRecord> findByUserId(int userId);
-	
+	//--搜索关键词前十名
+	List<String> keywordTopTen();
 }
